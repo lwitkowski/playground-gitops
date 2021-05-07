@@ -8,7 +8,7 @@ sample-service:
     pullSecrets:
       - dockerhub-credentials
     repository: lwitkowski/sample-service
-    tag: "5c3a10643ee39c57aec9b53ab31175dc8dd6f7ab"
+    tag: "cf188b"
   ingress:
     annotations:
       kubernetes.io/ingress.class: public
