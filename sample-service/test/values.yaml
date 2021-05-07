@@ -1,0 +1,33 @@
+sample-service:
+  cert:
+    enabled: true
+  environment:
+    - name: QUARKUS_HTTP_PORT
+      value: '8080'
+  image:
+    pullSecrets:
+      - dockerhub-credentials
+    repository: lwitkowski/sample-service
+    tag: "e80eb1c"
+  ingress:
+    annotations:
+      kubernetes.io/ingress.class: public
+    enabled: true
+    hosts:
+      - sample-service.test.lukaszwitkowski.com
+    tls:
+      - hosts:
+          - sample-service.test.lukaszwitkowski.com
+        secretName: sample-service.test.lukaszwitkowski.com
+  liveness:
+    path: /health/live
+  metrics:
+    enabled: true
+  podAnnotations:
+    vault.security.banzaicloud.io/vault-role: sample-service-test
+  readiness:
+    path: /health/ready
+  resources:
+    limits:
+      cpu: 1000m
+      memory: 4Gi
